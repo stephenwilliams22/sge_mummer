@@ -15,7 +15,7 @@ git clone https://github.com/fritzsedlazeck/sge_mummer.git
 Edit the main script: sge_mummer.sh
 
 Open and correct the paths to the MUMmer installation and to the directory you placed all three scripts. 
-Note that nucmer is called with the following parameters: " -maxmatch -l 100 -c 500 ". This can be adjusted in: sge_mummer_helper.sh
+Note that nucmer is called with the following parameters: " -maxmatch -c 100 ". This can be adjusted in: sge_mummer_helper.sh
 
 **************************************
 
