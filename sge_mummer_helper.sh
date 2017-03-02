@@ -6,11 +6,16 @@
 # run job in the current working directory where qsub is executed from
 #$ -cwd
 #  specify that the job requires 16GB of memory
-#$ -l m_mem_free=16G
+m_mem_free=16G
 # Tell SGE this is an array job with 195 jobs
 #$ -t 1-NUMMER
 
 ## Variables set from outside: $WORK, $REF_FASTA_LIST. $QRY
+#print variables to make sure they are correct
+echo working dir:$WORK
+echo reference:$REF_FASTA_LIST
+echo query:$QRY
+
 MY_WORK="$WORK/$SGE_TASK_ID"
 echo $SGE_TASK_ID
 
@@ -26,6 +31,7 @@ hostname
 ## preparing the directory
 echo "\tProcessing task $SGE_TASK_ID $REF $QRY $MY_WORK"
 mkdir -p $MY_WORK
+
 ln -s $REF $MY_WORK/ref.fa
 ln -s $QRY $MY_WORK/qry.fa
 
@@ -35,7 +41,7 @@ if [ ! -e $MY_WORK/$SGE_TASK_ID.delta ]
 then
   echo "Aligning reads"
   touch nucmer.proc
-  $PATHMUM/nucmer -maxmatch -l 100 -c 500 ref.fa qry.fa -p $SGE_TASK_ID && touch nucmer.success
+  $PATHMUM/nucmer -maxmatch -c 100 ref.fa qry.fa -p $SGE_TASK_ID && touch nucmer.success
 fi
 
 date
