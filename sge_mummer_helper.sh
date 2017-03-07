@@ -6,7 +6,7 @@
 # run job in the current working directory where qsub is executed from
 #$ -cwd
 #  specify that the job requires 16GB of memory
-m_mem_free=16G
+m_mem_free=32G
 # Tell SGE this is an array job with 195 jobs
 #$ -t 1-NUMMER
 
